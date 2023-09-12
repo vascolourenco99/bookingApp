@@ -6,6 +6,7 @@ import {
   Pressable,
   TextInput,
   Button,
+  Image,
 } from "react-native";
 import DatePicker from "react-native-date-ranges";
 import React, { useLayoutEffect, useState } from "react";
@@ -117,7 +118,7 @@ const HomeScreen = () => {
                   setSelectedDates(starDate, endDate)
                 }
                 allowFontScaling={false}
-                placeholder={"Apr 27, 2018 → Jul 10, 2018"}
+                placeholder={"Select Your Dates"}
                 mode={"range"}
               />
             </Pressable>
@@ -130,7 +131,7 @@ const HomeScreen = () => {
               <Ionicons name="person" size={24} color="black" />
               <TextInput
                 placeholderTextColor="red"
-                placeholder="1 room / 2 adults / 0 Children"
+                placeholder={`${rooms} room / ${adults} adults / ${children} Children`}
               />
             </Pressable>
 
@@ -139,6 +140,104 @@ const HomeScreen = () => {
               <Text style={styles.searchButton}>Search Button</Text>
             </Pressable>
           </View>
+
+          <Text
+            style={{ marginHorizontal: 20, fontSize: 17, fontWeight: "500" }}
+          >
+            Travel More and spend less
+          </Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <Pressable
+              style={{
+                width: 200,
+                height: 150,
+                marginTop: 10,
+                backgroundColor: "#003580",
+                borderRadius: 10,
+                padding: 20,
+                marginHorizontal: 10
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  marginVertical: 7,
+                }}
+              >
+                Genius
+              </Text>
+              <Text style={{ color: "white", fontSize: 15, fontWeight: "500" }}>
+                You are ate genius level one in our loyalty program
+              </Text>
+            </Pressable>
+
+            <Pressable
+              style={{
+                width: 200,
+                height: 150,
+                marginTop: 10,
+                borderColor: "#E0E0E0",
+                borderWidth: 2,
+                borderRadius: 10,
+                padding: 20,
+                marginHorizontal: 10
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  marginVertical: 7,
+                }}
+              >
+                10% Discounts
+              </Text>
+              <Text style={{ fontSize: 15, fontWeight: "500" }}>
+                Enjoy 10% discounts on your next booking!
+              </Text>
+            </Pressable>
+
+            <Pressable
+              style={{
+                width: 200,
+                height: 150,
+                marginTop: 10,
+                borderColor: "#E0E0E0",
+                borderWidth: 2,
+                borderRadius: 10,
+                padding: 20,
+                marginHorizontal: 10
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  marginVertical: 7,
+                }}
+              >
+                15% Discounts
+              </Text>
+              <Text style={{ fontSize: 15, fontWeight: "500" }}>
+                Complete 5 stays to unlock 15% discounts
+              </Text>
+            </Pressable>
+          </ScrollView>
+          
+          <Pressable
+            style={{
+              marginTop: 40,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Image
+              style={{ width: 200, height: 50, resizeMode: "cover" }}
+              source={{ uri: "https://content.presspage.com/clients/o_685.jpg"}}
+            />
+          </Pressable>
         </ScrollView>
       </View>
 
@@ -178,11 +277,12 @@ const HomeScreen = () => {
               marginVertical: 15,
             }}
           >
-            <Text style={{ fontSize:16, fontWeight:"500" }} >Rooms</Text>
+            <Text style={{ fontSize: 16, fontWeight: "500" }}>Rooms</Text>
             <Pressable
               style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
             >
               <Pressable
+                onPress={() => setRooms(Math.max(1, rooms - 1))}
                 style={{
                   width: 26,
                   height: 26,
@@ -206,6 +306,127 @@ const HomeScreen = () => {
                 <Text>{rooms}</Text>
               </Pressable>
               <Pressable
+                onPress={() => setRooms((number) => number + 1)}
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  borderColor: "#BEBEBE",
+                  backgroundColor: "#E0E0E0",
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontSize: 18,
+                    fontWeight: "600",
+                    paddingHorizontal: 6,
+                  }}
+                >
+                  +
+                </Text>
+              </Pressable>
+            </Pressable>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginVertical: 15,
+            }}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "500" }}>Adults</Text>
+            <Pressable
+              style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
+            >
+              <Pressable
+                onPress={() => setAdults(Math.max(1, adults - 1))}
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  borderColor: "#BEBEBE",
+                  backgroundColor: "#E0E0E0",
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontSize: 18,
+                    fontWeight: "600",
+                    paddingHorizontal: 6,
+                  }}
+                >
+                  -
+                </Text>
+              </Pressable>
+              <Pressable>
+                <Text>{adults}</Text>
+              </Pressable>
+              <Pressable
+                onPress={() => setAdults((number) => number + 1)}
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  borderColor: "#BEBEBE",
+                  backgroundColor: "#E0E0E0",
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontSize: 18,
+                    fontWeight: "600",
+                    paddingHorizontal: 6,
+                  }}
+                >
+                  +
+                </Text>
+              </Pressable>
+            </Pressable>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginVertical: 15,
+            }}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "500" }}>Children</Text>
+            <Pressable
+              style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
+            >
+              <Pressable
+                onPress={() => setChildren(Math.max(0, children - 1))}
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 13,
+                  borderColor: "#BEBEBE",
+                  backgroundColor: "#E0E0E0",
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontSize: 18,
+                    fontWeight: "600",
+                    paddingHorizontal: 6,
+                  }}
+                >
+                  -
+                </Text>
+              </Pressable>
+              <Pressable>
+                <Text>{children}</Text>
+              </Pressable>
+              <Pressable
+                onPress={() => setChildren((number) => number + 1)}
                 style={{
                   width: 26,
                   height: 26,
