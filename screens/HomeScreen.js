@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import DatePicker from "react-native-date-ranges";
 import React, { useLayoutEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import Header from "../components/Header";
 
 import { Ionicons } from "@expo/vector-icons";
@@ -27,6 +27,7 @@ import {
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [selectedDates, setSelectedDates] = useState();
+  const route = useRoute();
   const [rooms, setRooms] = useState(1);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
@@ -76,11 +77,13 @@ const HomeScreen = () => {
         <ScrollView>
           <View style={styles.container}>
             {/* Destination */}
-            <Pressable style={styles.pressableContainer}>
+            <Pressable style={styles.pressableContainer}
+              onPress={() => navigation.navigate("Search")}
+            > 
               <FontAwesome name="search" size={24} color="black" />
               <TextInput
                 placeholderTextColor="black"
-                placeholder="Enter your Destination"
+                placeholder={route?.params ? route.params.input : "Where are you going?"}
               />
             </Pressable>
 
@@ -155,7 +158,7 @@ const HomeScreen = () => {
                 backgroundColor: "#003580",
                 borderRadius: 10,
                 padding: 20,
-                marginHorizontal: 10
+                marginHorizontal: 10,
               }}
             >
               <Text
@@ -182,7 +185,7 @@ const HomeScreen = () => {
                 borderWidth: 2,
                 borderRadius: 10,
                 padding: 20,
-                marginHorizontal: 10
+                marginHorizontal: 10,
               }}
             >
               <Text
@@ -208,7 +211,7 @@ const HomeScreen = () => {
                 borderWidth: 2,
                 borderRadius: 10,
                 padding: 20,
-                marginHorizontal: 10
+                marginHorizontal: 10,
               }}
             >
               <Text
@@ -225,7 +228,7 @@ const HomeScreen = () => {
               </Text>
             </Pressable>
           </ScrollView>
-          
+
           <Pressable
             style={{
               marginTop: 40,
@@ -235,7 +238,9 @@ const HomeScreen = () => {
           >
             <Image
               style={{ width: 200, height: 50, resizeMode: "cover" }}
-              source={{ uri: "https://content.presspage.com/clients/o_685.jpg"}}
+              source={{
+                uri: "https://content.presspage.com/clients/o_685.jpg",
+              }}
             />
           </Pressable>
         </ScrollView>
