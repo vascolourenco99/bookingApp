@@ -7,6 +7,7 @@ import {
   TextInput,
   Button,
   Image,
+  Alert,
 } from "react-native";
 import DatePicker from "react-native-date-ranges";
 import React, { useLayoutEffect, useState } from "react";
@@ -69,6 +70,29 @@ const HomeScreen = () => {
     );
   };
 
+  const searchPlaces = (place) => {
+    if (!route.params || !selectedDates) {
+      Alert.alert("Invalid Details", "Please enter all the details", [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      ]);
+    }
+
+    if(route.params && selectedDates){
+      navigation.navigate("Places",{
+        rooms:rooms,
+        adults:adults,
+        children:children,
+        selectedDates:selectedDates,
+        place:place
+      })
+    }
+  };
+
   return (
     <>
       <View>
@@ -77,13 +101,16 @@ const HomeScreen = () => {
         <ScrollView>
           <View style={styles.container}>
             {/* Destination */}
-            <Pressable style={styles.pressableContainer}
+            <Pressable
+              style={styles.pressableContainer}
               onPress={() => navigation.navigate("Search")}
-            > 
+            >
               <FontAwesome name="search" size={24} color="black" />
               <TextInput
                 placeholderTextColor="black"
-                placeholder={route?.params ? route.params.input : "Where are you going?"}
+                placeholder={
+                  route?.params ? route.params.input : "Where are you going?"
+                }
               />
             </Pressable>
 
@@ -139,7 +166,10 @@ const HomeScreen = () => {
             </Pressable>
 
             {/* Search Button */}
-            <Pressable style={styles.pressableContainerButton}>
+            <Pressable
+              style={styles.pressableContainerButton}
+              onPress={() => searchPlaces(route?.params.input)}
+            >
               <Text style={styles.searchButton}>Search Button</Text>
             </Pressable>
           </View>
