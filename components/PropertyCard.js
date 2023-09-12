@@ -101,10 +101,10 @@ const PropertyCard = ({
                 textDecorationLine: "line-through",
               }}
             >
-              {property.oldPrice * adults * exchangeRate}€
+              {(property.oldPrice * adults * exchangeRate).toFixed(2)}€
             </Text>
             <Text style={{ fontSize: 18 }}>
-              {property.newPrice * adults * exchangeRate}€
+              {(property.newPrice * adults * exchangeRate).toFixed(2)}€
             </Text>
           </View>
 
