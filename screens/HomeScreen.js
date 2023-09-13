@@ -10,12 +10,12 @@ import {
   Alert,
 } from "react-native";
 import DatePicker from "react-native-date-ranges";
-import React, { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import Header from "../components/Header";
 
-import { Ionicons } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
+
 import {
   BottomModal,
   ModalButton,
@@ -27,8 +27,8 @@ import {
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const [selectedDates, setSelectedDates] = useState();
   const route = useRoute();
+  const [selectedDates, setSelectedDates] = useState();
   const [rooms, setRooms] = useState(1);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
@@ -96,6 +96,7 @@ const HomeScreen = () => {
   return (
     <>
       <View>
+        
         <Header />
 
         <ScrollView>

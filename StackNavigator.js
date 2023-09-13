@@ -1,4 +1,3 @@
-import { StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 
 import HomeScreen from './screens/HomeScreen';
@@ -94,5 +93,4 @@ const StackNavigator = () => {
     </NavigationContainer>
   )
 }
-
 export default StackNavigator
