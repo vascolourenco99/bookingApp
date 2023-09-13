@@ -77,7 +77,14 @@ const PlacesScreen = () => {
           <Text style={styles.optionsStyle}>Filter</Text>
         </Pressable>
 
-        <Pressable style={styles.optionsPositions}>
+        <Pressable
+          onPress={() =>
+            navigation.navigate("Map", {
+              searchPlaces: searchPlaces,
+            })
+          }
+          style={styles.optionsPositions}
+        >
           <Entypo name="map" size={22} color="gray" />
           <Text style={styles.optionsStyle}>Map</Text>
         </Pressable>

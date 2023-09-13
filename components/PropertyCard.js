@@ -7,10 +7,8 @@ import {
   Image,
 } from "react-native";
 import React from "react";
-import { AntDesign } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-
-const exchangeRate = 0.012;
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
+import { exchangeRate } from "../util/constants"
 
 const PropertyCard = ({
   rooms,
