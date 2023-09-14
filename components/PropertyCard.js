@@ -10,6 +10,7 @@ import React from "react";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { exchangeRate } from "../util/constants";
 import { useNavigation } from "@react-navigation/native";
+import GeniusCard from "./GeniusCard";
 
 const PropertyCard = ({
   rooms,
@@ -59,6 +60,7 @@ const PropertyCard = ({
             <Text style={{ width: 200 }}>{property.name}</Text>
             <AntDesign name="hearto" size={24} color="red" />
           </View>
+
           <View
             style={{
               flexDirection: "row",
@@ -69,21 +71,9 @@ const PropertyCard = ({
           >
             <MaterialIcons name="stars" size={24} color="black" />
             <Text>{property.rating}</Text>
-            <View
-              style={{
-                backgroundColor: "#6CB4EE",
-                paddingVertical: 4,
-                borderRadius: 5,
-                width: 100,
-              }}
-            >
-              <Text
-                style={{ textAlign: "center", color: "white", fontSize: 15 }}
-              >
-                Genius Level
-              </Text>
-            </View>
+            <GeniusCard />
           </View>
+
           <Text
             style={{
               width: 210,
