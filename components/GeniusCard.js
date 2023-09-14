@@ -5,7 +5,7 @@ const GeniusCard = () => {
   return (
     <View
       style={{
-        backgroundColor: "#6CB4EE",
+        backgroundColor: "#003580",
         paddingVertical: 4,
         borderRadius: 5,
         width: 100,
