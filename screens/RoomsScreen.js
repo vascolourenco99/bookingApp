@@ -82,12 +82,22 @@ const RoomsScreen = () => {
       </ScrollView>
 
       {selected.length > 0 ? (
-        <Pressable style={styles.reserveButton}>
-            <Text style={styles.reserveButtonTextStyle}>Reserved</Text>
+        <Pressable
+          onPress={() => navigation.navigate("User", {
+            oldPrice: route.params.oldPrice,
+            newPrice: route.params.newPrice,
+            name: route.params.name,
+            children: route.params.children,
+            adults: route.params.adults,
+            rating: route.params.rating,
+            startDate: route.params.startDate,
+            endDate: route.params.endDate,
+          })}
+          style={styles.reserveButton}
+        >
+          <Text style={styles.reserveButtonTextStyle}>Reserved</Text>
         </Pressable>
-      ) : (
-        null
-      )}
+      ) : null}
     </>
   );
 };
@@ -159,5 +169,5 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     fontSize: 18,
-  }
+  },
 });
