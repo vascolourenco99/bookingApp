@@ -16,6 +16,7 @@ import SearchScreen from './screens/SearchScreen';
 import PlacesScreen from './screens/PlacesScreen';
 import MapScreen from './screens/MapScreen';
 import PropertyInfoScreen from './screens/PropertyInfoScreen';
+import RoomsScreen from './screens/RoomsScreen';
 
 
 
@@ -93,6 +94,7 @@ const StackNavigator = () => {
         <Stack.Screen name="Places" component={PlacesScreen} />
         <Stack.Screen name="Map" component={MapScreen} />
         <Stack.Screen name="Info" component={PropertyInfoScreen} />
+        <Stack.Screen name="Rooms" component={RoomsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )
