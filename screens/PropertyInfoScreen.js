@@ -14,6 +14,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import GeniusCard from "../components/GeniusCard";
 import TravelCard from "../components/TravelCard";
 import { exchangeRate } from "../util/constants";
+import Amenities from "../components/Amenities";
 
 const PropertyInfoScreen = () => {
   const route = useRoute();
@@ -206,8 +207,20 @@ const PropertyInfoScreen = () => {
             marginTop: 15,
           }}
         />
-        
+        <Amenities />
+
+        <Text
+          style={{
+            borderColor: "#E0E0E0",
+            borderWidth: 3,
+            height: 1,
+            marginTop: 15,
+          }}
+        />
       </ScrollView>
+      <Pressable style={styles.buttonAvailability}>
+        <Text style={styles.buttonText}>Select Availabity</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };
@@ -224,5 +237,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     margin: 6,
+  },
+  buttonAvailability: {
+    backgroundColor: "#6CB4EE",
+    position: "absolute",
+    bottom: 20,
+    padding: 15,
+    width: "100%"
+  },
+  buttonText: {
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 17,
   },
 });
