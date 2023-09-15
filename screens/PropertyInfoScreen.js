@@ -140,11 +140,13 @@ const PropertyInfoScreen = () => {
             backgroundColor: "green",
             paddingHorizontal: 4,
             paddingVertical: 5,
-            width:70,
-            borderRadius: 4
+            width: 70,
+            borderRadius: 4,
           }}
         >
-          <Text style={{textAlign:"center",color:"white"}}>{offerPrice.toFixed(0)}% OFF</Text>
+          <Text style={{ textAlign: "center", color: "white" }}>
+            {offerPrice.toFixed(0)}% OFF
+          </Text>
         </View>
 
         <Text
@@ -155,6 +157,56 @@ const PropertyInfoScreen = () => {
             marginTop: 15,
           }}
         />
+
+        <View
+          style={{
+            margin: 12,
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 60,
+          }}
+        >
+          <View>
+            <Text style={{ fontSize: 16, fontWeight: "600", marginBottom: 3 }}>
+              Check In:
+            </Text>
+            <Text
+              style={{ fontSize: 16, fontWeight: "bold", color: "#007FFF" }}
+            >
+              {route.params.selectedDates.startDate}
+            </Text>
+          </View>
+          <View>
+            <Text style={{ fontSize: 16, fontWeight: "600", marginBottom: 3 }}>
+              Check Out:
+            </Text>
+            <Text
+              style={{ fontSize: 16, fontWeight: "bold", color: "#007FFF" }}
+            >
+              {route.params.selectedDates.endDate}
+            </Text>
+          </View>
+        </View>
+
+        <View style={{ marginLeft: 12 }}>
+          <Text style={{ fontSize: 16, fontWeight: "600", marginBottom: 3 }}>
+            Rooms and Guests:
+          </Text>
+          <Text style={{ fontSize: 16, fontWeight: "bold", color: "#007FFF" }}>
+            {route.params.rooms} rooms {route.params.adults} adults{" "}
+            {route.params.children} children
+          </Text>
+        </View>
+
+        <Text
+          style={{
+            borderColor: "#E0E0E0",
+            borderWidth: 3,
+            height: 1,
+            marginTop: 15,
+          }}
+        />
+        
       </ScrollView>
     </SafeAreaView>
   );
