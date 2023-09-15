@@ -1,15 +1,15 @@
-import { StyleSheet } from 'react-native';
-import StackNavigator from './StackNavigator';
-import { ModalPortal } from 'react-native-modals';
+import { ModalPortal } from "react-native-modals";
+import { Provider } from "react-redux";
+import StackNavigator from "./StackNavigator";
+import store from "./store";
 
 export default function App() {
   return (
     <>
-      <StackNavigator/>
-      <ModalPortal/>
+      <Provider store={store}>
+        <StackNavigator />
+        <ModalPortal />
+      </Provider>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-});
