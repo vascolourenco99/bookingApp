@@ -5,15 +5,39 @@ import {
   View,
   Text,
   TextInput,
-  Pressable
+  Pressable,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { auth } from "../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
+
+  const login = () => {
+    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      console.log("user credential", userCredential);
+      const user = userCredential.user;
+      console.log("user details", user);
+    });
+  };
+
+  useEffect(() => {
+    try {
+      const unsubscribe = auth.onAuthStateChanged((authUser) => {
+        if (authUser) {
+          navigation.replace("Main");
+        }
+      });
+
+      return unsubscribe;
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -26,13 +50,15 @@ const LoginScreen = () => {
 
         <View style={{ marginTop: 50 }}>
           <View>
-            <Text style={{ fontSize: 18, fontWeight: "500", color:"gray" }}>Email</Text>
+            <Text style={{ fontSize: 18, fontWeight: "500", color: "gray" }}>
+              Email
+            </Text>
 
             <TextInput
               value={email}
-              onChange={(text) => setEmail(text)}
+              onChangeText={(text) => setEmail(text)}
               style={{
-                fontSize:email ? 18: 18,
+                fontSize: email ? 18 : 18,
                 borderBottomColor: "gray",
                 borderBottomWidth: 1,
                 marginVertical: 10,
@@ -42,11 +68,13 @@ const LoginScreen = () => {
           </View>
 
           <View style={{ marginTop: 12 }}>
-            <Text style={{ fontSize: 18, fontWeight: "500", color:"gray" }}>Password</Text>
+            <Text style={{ fontSize: 18, fontWeight: "500", color: "gray" }}>
+              Password
+            </Text>
 
             <TextInput
               value={password}
-              onChange={(text) => setPassword(text)}
+              onChangeText={(text) => setPassword(text)}
               secureTextEntry={true}
               style={{
                 fontSize: password ? 18 : 18,
@@ -60,28 +88,36 @@ const LoginScreen = () => {
         </View>
 
         <Pressable
-            style={{
-                width: 200,
-                backgroundColor: "#003580",
-                padding: 15,
-                borderRadius: 7,
-                marginTop: 50,
-                marginLeft: "auto",
-                marginRight: "auto",
-            }}
+          onPress={login}
+          style={{
+            width: 200,
+            backgroundColor: "#003580",
+            padding: 15,
+            borderRadius: 7,
+            marginTop: 50,
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
         >
-            <Text
+          <Text
             style={{
-                textAlign: "center",
-                color: "white",
-                fontSize: 18,
-                fontWeight: "bold",
+              textAlign: "center",
+              color: "white",
+              fontSize: 18,
+              fontWeight: "bold",
             }}
-            >Login</Text>
+          >
+            Login
+          </Text>
         </Pressable>
 
-        <Pressable onPress={() => navigation.navigate("Register")} style={{marginTop:20}}>
-            <Text style={{textAlign:"center", fontSize:16, color:"gray"}}>Don´t have an account? Sign up</Text>
+        <Pressable
+          onPress={() => navigation.navigate("Register")}
+          style={{ marginTop: 20 }}
+        >
+          <Text style={{ textAlign: "center", fontSize: 16, color: "gray" }}>
+            Don´t have an account? Sign up
+          </Text>
         </Pressable>
       </KeyboardAvoidingView>
     </SafeAreaView>

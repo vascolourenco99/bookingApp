@@ -6,15 +6,42 @@ import {
   KeyboardAvoidingView,
   TextInput,
   Pressable,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../firebase";
+import { setDoc, doc } from "firebase/firestore";
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const navigation = useNavigation();
+
+  const register = () => {
+    if (email === "" || password === "" || phone === "") {
+      Alert.alert("Invalid Details", "Please enter all credentials", [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      ]);
+    }
+
+    createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      const user = userCredential._tokenResponse.email;
+      const uid = auth.currentUser.uid;
+
+      setDoc(doc(db, "users", `${uid}`), {
+        email: email,
+        phone: phone,
+      })
+    })
+  };
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -33,7 +60,7 @@ const RegisterScreen = () => {
 
             <TextInput
               value={email}
-              onChange={(text) => setEmail(text)}
+              onChangeText={(text) => setEmail(text)}
               style={{
                 fontSize: email ? 18 : 18,
                 borderBottomColor: "gray",
@@ -51,7 +78,7 @@ const RegisterScreen = () => {
 
             <TextInput
               value={password}
-              onChange={(text) => setPassword(text)}
+              onChangeText={(text) => setPassword(text)}
               secureTextEntry={true}
               style={{
                 fontSize: password ? 18 : 18,
@@ -70,7 +97,7 @@ const RegisterScreen = () => {
 
             <TextInput
               value={phone}
-              onChange={(text) => setPhone(text)}
+              onChangeText={(text) => setPhone(text)}
               style={{
                 fontSize: phone ? 18 : 18,
                 borderBottomColor: "gray",
@@ -83,6 +110,7 @@ const RegisterScreen = () => {
         </View>
 
         <Pressable
+          onPress={register}
           style={{
             width: 200,
             backgroundColor: "#003580",
@@ -105,8 +133,13 @@ const RegisterScreen = () => {
           </Text>
         </Pressable>
 
-         <Pressable onPress={() => navigation.goBack()} style={{marginTop:20}}>
-            <Text style={{textAlign:"center",color:"gray",fontSize:17}}>Already have an account? Sign In</Text>
+        <Pressable
+          onPress={() => navigation.goBack()}
+          style={{ marginTop: 20 }}
+        >
+          <Text style={{ textAlign: "center", color: "gray", fontSize: 17 }}>
+            Already have an account? Sign In
+          </Text>
         </Pressable>
       </KeyboardAvoidingView>
     </SafeAreaView>

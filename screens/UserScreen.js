@@ -4,7 +4,7 @@ import {
   View,
   TextInput,
   Pressable,
-  Alert,
+  Alert
 } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -169,7 +169,6 @@ const styles = StyleSheet.create({
   containerInput: {
     flexDirection: "column",
     gap: 10,
-    marginTop: 10,
   },
   inputStyle: {
     padding: 10,

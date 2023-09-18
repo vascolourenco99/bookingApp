@@ -29,8 +29,9 @@ const BookingScreen = () => {
   return (
     <SafeAreaView>
       {bookings.length > 0 &&
-        bookings.map((item) => (
+        bookings.map((item, index) => (
           <Pressable
+            key={index}
             style={{
               backgroundColor: "white",
               marginVertical: 10,
