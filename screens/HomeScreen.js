@@ -8,6 +8,7 @@ import {
   Button,
   Image,
   Alert,
+  StatusBar,
 } from "react-native";
 import DatePicker from "react-native-date-ranges";
 import { useLayoutEffect, useState } from "react";
@@ -95,6 +96,7 @@ const HomeScreen = () => {
 
   return (
     <>
+      <StatusBar barStyle="light-content" backgroundColor="#003588" />
       <View>
         
         <Header />
